@@ -1,1 +1,3 @@
 import sys
+
+import scipy
