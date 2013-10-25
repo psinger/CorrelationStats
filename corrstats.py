@@ -1,7 +1,8 @@
 """
 Functions for calculating the statistical significant differences between two dependent or independent correlation
 coefficients.
-The Steiger method is adopted from the R package http://personality-project.org/r/html/paired.r.html
+The Fisher and Steiger method is adopted from the R package http://personality-project.org/r/html/paired.r.html
+and is described in detail in the book 'Statistical Methods for Psychology'
 The Zou method is adopted from http://seriousstats.wordpress.com/2012/02/05/comparing-correlations/
 Credit goes to the authors of above mentioned packages!
 
@@ -66,20 +67,20 @@ def dependent_corr(xy, xz, yz, n, twotailed=True, conf_level=0.95, method='steig
     else:
         raise Exception('Wrong method!')
 
-def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, method='steiger'):
+def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, method='fisher'):
     """
     Calculates the statistic significance between two independent correlation coefficients
     @param xy: correlation coefficient between x and y
     @param xz: correlation coefficient between a and b
     @param n: number of elements in xy
     @param n2: number of elements in ab (if distinct from n)
-    @param twotailed: whether to calculate a one or two tailed test, only works for 'steiger' method
+    @param twotailed: whether to calculate a one or two tailed test, only works for 'fisher' method
     @param conf_level: confidence level, only works for 'zou' method
-    @param method: defines the method uses, 'steiger' or 'zou'
+    @param method: defines the method uses, 'fisher' or 'zou'
     @return: z and p-val
     """
 
-    if method == 'steiger':
+    if method == 'fisher':
         xy_z = 0.5 * np.log((1 + xy)/(1 - xy))
         xz_z = 0.5 * np.log((1 + ab)/(1 - ab))
         if n2 is None:
