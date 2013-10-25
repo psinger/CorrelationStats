@@ -2,8 +2,8 @@
 Functions for calculating the statistical significant differences between two dependent or independent correlation
 coefficients.
 The Steiger method is adopted from the R package http://personality-project.org/r/html/paired.r.html
-The Zou method is adopted from
-Credit goes to the authors of abothementioned packages!
+The Zou method is adopted from http://seriousstats.wordpress.com/2012/02/05/comparing-correlations/
+Credit goes to the authors of above mentioned packages!
 
 Author: Philipp Singer (www.philippsinger.info)
 """
