@@ -66,13 +66,13 @@ def dependent_corr(xy, xz, yz, n, twotailed=True, conf_level=0.95, method='steig
     else:
         raise Exception('Wrong method!')
 
-def independent_corr(xy, xz, n, n2 = None, twotailed=True, conf_level=0.95, method='steiger'):
+def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, method='steiger'):
     """
     Calculates the statistic significance between two independent correlation coefficients
     @param xy: correlation coefficient between x and y
-    @param xz: correlation coefficient between x and z
+    @param xz: correlation coefficient between a and b
     @param n: number of elements in xy
-    @param n2: number of elements in xz (if distinct from n)
+    @param n2: number of elements in ab (if distinct from n)
     @param twotailed: whether to calculate a one or two tailed test, only works for 'steiger' method
     @param conf_level: confidence level, only works for 'zou' method
     @param method: defines the method uses, 'steiger' or 'zou'
@@ -81,7 +81,7 @@ def independent_corr(xy, xz, n, n2 = None, twotailed=True, conf_level=0.95, meth
 
     if method == 'steiger':
         xy_z = 0.5 * np.log((1 + xy)/(1 - xy))
-        xz_z = 0.5 * np.log((1 + xz)/(1 - xz))
+        xz_z = 0.5 * np.log((1 + ab)/(1 - ab))
         if n2 is None:
             n2 = n
 
@@ -96,10 +96,10 @@ def independent_corr(xy, xz, n, n2 = None, twotailed=True, conf_level=0.95, meth
     elif method == 'zou':
         L1 = rz_ci(xy, n, conf_level=conf_level)[0]
         U1 = rz_ci(xy, n, conf_level=conf_level)[1]
-        L2 = rz_ci(xz, n2, conf_level=conf_level)[0]
-        U2 = rz_ci(xz, n2, conf_level=conf_level)[1]
-        lower = xy - xz - pow((pow((xy - L1), 2) + pow((U2 - xz), 2)), 0.5)
-        upper = xy - xz + pow((pow((U1 - xy), 2) + pow((xz - L2), 2)), 0.5)
+        L2 = rz_ci(ab, n2, conf_level=conf_level)[0]
+        U2 = rz_ci(ab, n2, conf_level=conf_level)[1]
+        lower = xy - ab - pow((pow((xy - L1), 2) + pow((U2 - ab), 2)), 0.5)
+        upper = xy - ab + pow((pow((U1 - xy), 2) + pow((ab - L2), 2)), 0.5)
         return lower, upper
     else:
         raise Exception('Wrong method!')
