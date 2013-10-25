@@ -31,6 +31,7 @@ def rho_rxy_rxz(rxy, rxz, ryz):
 
 def dependent_corr(xy, xz, yz, n, twotailed=True, conf_level=0.95, method='steiger'):
     """
+    Calculates the statistic significance between two dependent correlation coefficients
     @param xy: correlation coefficient between x and y
     @param xz: correlation coefficient between x and z
     @param yz: correlation coefficient between y and z
@@ -67,6 +68,7 @@ def dependent_corr(xy, xz, yz, n, twotailed=True, conf_level=0.95, method='steig
 
 def independent_corr(xy, xz, n, n2 = None, twotailed=True, conf_level=0.95, method='steiger'):
     """
+    Calculates the statistic significance between two independent correlation coefficients
     @param xy: correlation coefficient between x and y
     @param xz: correlation coefficient between x and z
     @param n: number of elements in xy
