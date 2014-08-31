@@ -106,7 +106,7 @@ def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, meth
         raise Exception('Wrong method!')
 
 print dependent_corr(.396, .179, .088, 200, method='steiger')
-print independent_corr(.560, .588, 100, 353, method='steiger')
+print independent_corr(.560, .588, 100, 353, method='fisher')
 
 print dependent_corr(.396, .179, .088, 200, method='zou')
 print independent_corr(.560, .588, 100, 353, method='zou')
