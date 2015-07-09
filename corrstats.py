@@ -82,12 +82,12 @@ def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, meth
 
     if method == 'fisher':
         xy_z = 0.5 * np.log((1 + xy)/(1 - xy))
-        xz_z = 0.5 * np.log((1 + ab)/(1 - ab))
+        ab_z = 0.5 * np.log((1 + ab)/(1 - ab))
         if n2 is None:
             n2 = n
 
         se_diff_r = np.sqrt(1/(n - 3) + 1/(n2 - 3))
-        diff = xy_z - xz_z
+        diff = xy_z - ab_z
         z = abs(diff / se_diff_r)
         p = (1 - norm.cdf(z))
         if twotailed:
@@ -105,8 +105,8 @@ def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, meth
     else:
         raise Exception('Wrong method!')
 
-print dependent_corr(.396, .179, .088, 200, method='steiger')
-print independent_corr(.560, .588, 100, 353, method='fisher')
+#print dependent_corr(.396, .179, .088, 200, method='steiger')
+#print independent_corr(0.3213 , 0.2024, 291, 334, method='fisher')
 
-print dependent_corr(.396, .179, .088, 200, method='zou')
-print independent_corr(.560, .588, 100, 353, method='zou')
+#print dependent_corr(.396, .179, .088, 200, method='zou')
+#print independent_corr(.560, .588, 100, 353, method='zou')
