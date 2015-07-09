@@ -49,7 +49,7 @@ def dependent_corr(xy, xz, yz, n, twotailed=True, conf_level=0.95, method='steig
         cube = (1 - yz) * (1 - yz) * (1 - yz)
 
         t2 = d * np.sqrt((n - 1) * (1 + yz)/(((2 * (n - 1)/(n - 3)) * determin + av * av * cube)))
-        p = 1 - t.cdf(abs(t2), n - 2)
+        p = 1 - t.cdf(abs(t2), n - 3)
 
         if twotailed:
             p *= 2
@@ -105,8 +105,8 @@ def independent_corr(xy, ab, n, n2 = None, twotailed=True, conf_level=0.95, meth
     else:
         raise Exception('Wrong method!')
 
-#print dependent_corr(.396, .179, .088, 200, method='steiger')
-#print independent_corr(0.3213 , 0.2024, 291, 334, method='fisher')
+print dependent_corr(.40, .50, .10, 103, method='steiger')
+print independent_corr(0.5 , 0.6, 103, 103, method='fisher')
 
 #print dependent_corr(.396, .179, .088, 200, method='zou')
 #print independent_corr(.560, .588, 100, 353, method='zou')
